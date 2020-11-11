@@ -1,7 +1,6 @@
 package main
 
 import (
-	"fmt"
 	"time"
 
 	"github.com/ferried/bidder/nmgggzyjy"
@@ -13,7 +12,7 @@ import (
  * @Author: ferried
  * @Email: harlancui@outlook.com
  * @Date: 2020-11-05 09:11:49
- * @LastEditTime: 2020-11-11 15:32:25
+ * @LastEditTime: 2020-11-11 15:46:56
  * @LastEditors: ferried
  * @Description: Basic description
  * @FilePath: /bidding-go/main.go
@@ -28,9 +27,9 @@ func main() {
 	for {
 		select {
 		case <-wechatTokenTimmer.C:
-			fmt.Println("flush wechat token")
+			yunzainfo.Client.FlushToken()
 		case <-nmgggzyjyTimmer.C:
-			fmt.Println("pull nmgggzyjyTimmer")
+			nmgggzyjy.Run()
 		}
 	}
 }
