@@ -2,7 +2,7 @@
  * @Author: ferried
  * @Email: harlancui@outlook.com
  * @Date: 2020-11-11 09:35:07
- * @LastEditTime: 2020-11-11 10:55:36
+ * @LastEditTime: 2020-11-11 15:27:19
  * @LastEditors: ferried
  * @Description: Basic description
  * @FilePath: /bidding-go/yunzainfo/token.go
@@ -54,12 +54,12 @@ func (yz *YzToken) FlushToken() {
 	}
 	res, err := http.PostForm(fmt.Sprintf("%s/auth/oauth/token", yz.YunzaiInfoURL), p)
 	if err != nil {
-		panic(err)
+		util.Println(err)
 	}
 	defer res.Body.Close()
 	body, err := ioutil.ReadAll(res.Body)
 	if err != nil {
-		panic(err)
+		util.Println(err)
 	}
 	util.Println(fmt.Sprintf("刷新TOKEN完成:%s", string(body)))
 
@@ -67,7 +67,7 @@ func (yz *YzToken) FlushToken() {
 	if err := json.Unmarshal(body, &dat); err == nil {
 		Client.Token = dat["access_token"].(string)
 	} else {
-		panic(err)
+		util.Println(err)
 	}
 
 }

@@ -2,7 +2,7 @@
  * @Author: ferried
  * @Email: harlancui@outlook.com
  * @Date: 2020-11-09 17:31:23
- * @LastEditTime: 2020-11-10 17:53:27
+ * @LastEditTime: 2020-11-11 15:34:22
  * @LastEditors: ferried
  * @Description: Basic description
  * @FilePath: /bidding-go/nmgggzyjy/table.go
@@ -16,6 +16,7 @@ import (
 	"strings"
 
 	"github.com/ferried/bidder/util"
+	"github.com/ferried/bidder/wechat"
 )
 
 var (
@@ -43,7 +44,25 @@ func SaveEntity(db *sql.DB, data []Entity) {
 			panic(err)
 		}
 		util.Println(fmt.Sprintf("记录已入库:%v", ckdata))
+
+		entitiesPush := []map[string]interface{}{}
+		for _, v := range ckdata {
+			if strings.Contains(v.Title, "学校") || strings.Contains(v.Title, "学院") || strings.Contains(v.Title, "大学") || strings.Contains(v.Title, "院校") {
+				entityPush := map[string]interface{}{}
+				entityPush["LINK"] = PagePrefix + v.Link
+				entityPush["TITLE"] = v.Title
+				entityPush["TITLENEW"] = v.Title
+				entityPush["INFOD"] = v.Number
+				entityPush["INFODATE"] = v.Date
+				entityPush["CONTENT"] = "请点击查看详情..."
+				entityPush["CATEGORYNAME"] = "暂无"
+				entityPush["CATENAME"] = "暂无"
+				entitiesPush = append(entitiesPush, entityPush)
+			}
+		}
+		wechat.Client.Push(entitiesPush)
 	}
+
 }
 
 // CheckIsBlankTable 查看表是否没数据
