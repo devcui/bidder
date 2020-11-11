@@ -2,7 +2,7 @@
  * @Author: ferried
  * @Email: harlancui@outlook.com
  * @Date: 2020-11-09 17:31:23
- * @LastEditTime: 2020-11-11 15:34:22
+ * @LastEditTime: 2020-11-11 15:39:32
  * @LastEditors: ferried
  * @Description: Basic description
  * @FilePath: /bidding-go/nmgggzyjy/table.go

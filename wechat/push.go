@@ -2,7 +2,7 @@
  * @Author: ferried
  * @Email: harlancui@outlook.com
  * @Date: 2020-11-11 11:50:18
- * @LastEditTime: 2020-11-11 15:35:02
+ * @LastEditTime: 2020-11-11 15:38:06
  * @LastEditors: ferried
  * @Description: Basic description
  * @FilePath: /bidding-go/wechat/push.go
@@ -26,7 +26,7 @@ import (
 )
 
 func init() {
-	systemKey := os.Getenv("BIDDING_CLIENT_ID")
+	systemKey := os.Getenv("BIDDING_SYSTEM_KEY")
 	eventKey := os.Getenv("BIDDING_EVENT_KEY")
 	accounts := strings.Split(os.Getenv("BIDDING_ACCOUNTS"), ",")
 
